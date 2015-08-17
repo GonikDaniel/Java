@@ -1,4 +1,4 @@
-package Dice3D;
+package games.Dice3D;
 
 
 import javafx.animation.Animation;
@@ -18,12 +18,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
-
 /**
  * Created by Daniel_Gonik on 05.08.15.
  */
 
-public class Dice extends Application{
+public class Dice extends Application {
 
     @Override public void start(Stage stage) throws Exception {
         //main stage and title
@@ -76,12 +75,12 @@ public class Dice extends Application{
         launch(args);
     }
 
-    private static final String side1URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/1.png";
-    private static final String side2URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/2.png";
-    private static final String side3URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/3.png";
-    private static final String side4URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/4.png";
-    private static final String side5URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/5.png";
-    private static final String side6URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/6.png";
+//    private static final String side1URL = "file:" + System.getProperty("user.dir") + "/src/games/Dice3D/img/png/border-radius/1.png";
+//    private static final String side2URL = "file:" + System.getProperty("user.dir") + "/src/games/Dice3D/img/png/border-radius/2.png";
+//    private static final String side3URL = "file:" + System.getProperty("user.dir") + "/src/games/Dice3D/img/png/border-radius/3.png";
+//    private static final String side4URL = "file:" + System.getProperty("user.dir") + "/src/games/Dice3D/img/png/border-radius/4.png";
+//    private static final String side5URL = "file:" + System.getProperty("user.dir") + "/src/games/Dice3D/img/png/border-radius/5.png";
+//    private static final String side6URL = "file:" + System.getProperty("user.dir") + "/src/games/Dice3D/img/png/border-radius/6.png";
 
     public class Cube extends Group {
         //we need 3 axis for 3D effect
@@ -90,12 +89,12 @@ public class Dice extends Application{
         final Rotate rz = new Rotate(0,Rotate.Z_AXIS);
         public Cube(double size) {
             //sides of dice
-            Image side1 = new Image(side1URL);
-            Image side2 = new Image(side2URL);
-            Image side3 = new Image(side3URL);
-            Image side4 = new Image(side4URL);
-            Image side5 = new Image(side5URL);
-            Image side6 = new Image(side6URL);
+            Image side1 = new Image(String.valueOf(getClass().getResource("img/png/border-radius/1.png")));
+            Image side2 = new Image(String.valueOf(getClass().getResource("img/png/border-radius/2.png")));
+            Image side3 = new Image(String.valueOf(getClass().getResource("img/png/border-radius/3.png")));
+            Image side4 = new Image(String.valueOf(getClass().getResource("img/png/border-radius/4.png")));
+            Image side5 = new Image(String.valueOf(getClass().getResource("img/png/border-radius/5.png")));
+            Image side6 = new Image(String.valueOf(getClass().getResource("img/png/border-radius/6.png")));
 
             getTransforms().addAll(rz, ry, rx);
             getChildren().addAll(
