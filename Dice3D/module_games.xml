@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_games" default="compile.module.games">
+  <dirname property="module.games.basedir" file="${ant.file.module_games}"/>
+  
+  <property name="module.jdk.home.games" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.games" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.games" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.games" value="-encoding UTF-8 -source 8 ${compiler.args}"/>
+  
+  <property name="games.output.dir" value="${module.games.basedir}/out/production/games"/>
+  <property name="games.testoutput.dir" value="${module.games.basedir}/out/test/games"/>
+  
+  <path id="games.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="games.module.production.classpath">
+    <path refid="${module.jdk.classpath.games}"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+  </path>
+  
+  <path id="games.runtime.production.module.classpath">
+    <pathelement location="${games.output.dir}"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+  </path>
+  
+  <path id="games.module.classpath">
+    <path refid="${module.jdk.classpath.games}"/>
+    <pathelement location="${games.output.dir}"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+  </path>
+  
+  <path id="games.runtime.module.classpath">
+    <pathelement location="${games.testoutput.dir}"/>
+    <pathelement location="${games.output.dir}"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/vecmath-1.3.1.jar"/>
+    <pathelement location="${basedir}/src/Dice3D/j3d-core-utils-1.3.1.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.games">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.games">
+    <patternset refid="excluded.from.module.games"/>
+  </patternset>
+  
+  <path id="games.module.sourcepath">
+    <dirset dir="${module.games.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.games" depends="compile.module.games.production,compile.module.games.tests" description="Compile module games"/>
+  
+  <target name="compile.module.games.production" depends="register.custom.compilers" description="Compile module games; production classes">
+    <mkdir dir="${games.output.dir}"/>
+    <javac2 destdir="${games.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.games}/javac">
+      <compilerarg line="${compiler.args.games}"/>
+      <bootclasspath refid="games.module.bootclasspath"/>
+      <classpath refid="games.module.production.classpath"/>
+      <src refid="games.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.games"/>
+    </javac2>
+    
+    <copy todir="${games.output.dir}">
+      <fileset dir="${module.games.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.games.tests" depends="register.custom.compilers,compile.module.games.production" description="compile module games; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.games" description="cleanup module">
+    <delete dir="${games.output.dir}"/>
+    <delete dir="${games.testoutput.dir}"/>
+  </target>
+</project>
