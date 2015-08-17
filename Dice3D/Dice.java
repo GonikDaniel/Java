@@ -62,6 +62,7 @@ public class Dice extends Application{
         root.setTranslateX(1300 / 2);
         root.setTranslateY(800 / 2);
         // create scene, set it to fullscreen and adding to main stage
+        // depthBuffer - true, balanced aliasing
         Scene scene = new Scene(root, 1200,850, true, SceneAntialiasing.BALANCED);
         stage.setFullScreen(true);
         scene.setCamera(new PerspectiveCamera());
@@ -75,12 +76,12 @@ public class Dice extends Application{
         launch(args);
     }
 
-    private static final String side1URL = "file:/Users/Daniel_Gonik/IdeaProjects/GUI/tic-tac-toe/src/Dice3D/img/png/border-radius/1.png";
-    private static final String side2URL = "file:/Users/Daniel_Gonik/IdeaProjects/GUI/tic-tac-toe/src/Dice3D/img/png/border-radius/2.png";
-    private static final String side3URL = "file:/Users/Daniel_Gonik/IdeaProjects/GUI/tic-tac-toe/src/Dice3D/img/png/border-radius/3.png";
-    private static final String side4URL = "file:/Users/Daniel_Gonik/IdeaProjects/GUI/tic-tac-toe/src/Dice3D/img/png/border-radius/4.png";
-    private static final String side5URL = "file:/Users/Daniel_Gonik/IdeaProjects/GUI/tic-tac-toe/src/Dice3D/img/png/border-radius/5.png";
-    private static final String side6URL = "file:/Users/Daniel_Gonik/IdeaProjects/GUI/tic-tac-toe/src/Dice3D/img/png/border-radius/6.png";
+    private static final String side1URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/1.png";
+    private static final String side2URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/2.png";
+    private static final String side3URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/3.png";
+    private static final String side4URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/4.png";
+    private static final String side5URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/5.png";
+    private static final String side6URL = "file:" + System.getProperty("user.dir") + "/src/Dice3D/img/png/border-radius/6.png";
 
     public class Cube extends Group {
         //we need 3 axis for 3D effect
